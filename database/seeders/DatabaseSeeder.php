@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,18 +15,48 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create permissions
+        $permissions = [
+            'view complaints',
+            'create complaints',
+            'edit complaints',
+            'delete complaints',
+            'manage users',
+            'view dashboard',
+            'manage settings'
+        ];
 
-        $user1 = User::factory()->create([
-            'name' => 'Admin',
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
+
+        // Create roles
+        $adminRole = Role::create(['name' => 'Admin']);
+        $userRole = Role::create(['name' => 'User']);
+        $managerRole = Role::create(['name' => 'Manager']);
+
+        // Assign permissions to roles
+        $adminRole->givePermissionTo($permissions); // Admin gets all permissions
+        $userRole->givePermissionTo(['view complaints', 'create complaints', 'view dashboard']);
+        $managerRole->givePermissionTo(['view complaints', 'create complaints', 'edit complaints', 'view dashboard']);
+
+        // Create users
+        $admin = User::factory()->create([
+            'name' => 'Admin User',
             'email' => 'admin@example.com',
         ]);
-        User::factory()->create([
-            'name' => 'Test',
-            'email' => 'test@example.com',
-        ]);
+        $admin->assignRole($adminRole);
 
-        $role = Role::create(['name' => 'Admin']);
-        $user1 -> assignRole($role);
+        $user = User::factory()->create([
+            'name' => 'Regular User',
+            'email' => 'user@example.com',
+        ]);
+        $user->assignRole($userRole);
+
+        $manager = User::factory()->create([
+            'name' => 'Manager User',
+            'email' => 'manager@example.com',
+        ]);
+        $manager->assignRole($managerRole);
     }
 }
