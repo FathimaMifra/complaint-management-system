@@ -1,42 +1,40 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Complaint Management System') }}</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $title ?? 'Complaint Management System' }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans">
-    <div class="min-h-screen">
-        <!-- Navigation -->
-        <nav class="bg-blue-600 text-white p-4">
-            <div class="container mx-auto flex justify-between items-center">
-                <a href="{{ url('/') }}" class="text-2xl font-bold">Complaint System</a>
-                <div>
-                    @auth
-                        <span class="mr-4">Welcome, {{ auth()->user()->name }}</span>
-                        <a href="{{ route('complaints.create') }}" class="mr-4">Submit Complaint</a>
-                        <a href="{{ route('complaints.index') }}" class="mr-4">My Complaints</a>
-                        @if(auth()->user()->hasRole('admin'))
-                            <a href="{{ url('/admin') }}" class="mr-4">Admin Panel</a>
-                        @endif
-                        <form action="{{ route('logout') }}" method="POST" class="inline">
-                            @csrf
-                            <button type="submit" class="text-white">Logout</button>
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="mr-4">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
+<body class="bg-white font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="text-2xl font-bold text-blue-500 flex items-center space-x-2">
+                <span class="text-3xl"></span>
+                <span>ComplaintSys</span>
             </div>
-        </nav>
+            <nav class="space-x-6 hidden md:block">
+                <a href="#home" class="text-gray-700 hover:text-blue-500">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-500">About</a>
+                <a href="#gallery" class="text-gray-700 hover:text-blue-500">Gallery</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-500">Contact</a>
+            </nav>
+            <div class="space-x-2">
+                <a href="/login" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Login</a>
+                <a href="/register" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Register</a>
+            </div>
+        </div>
+    </header>
 
-        <!-- Content -->
-        <main class="container mx-auto mt-8 px-4">
-            @yield('content')
-        </main>
-    </div>
+    <!-- Content -->
+    @yield('content')
+
+    <!-- Footer -->
+    <footer class="bg-white border-t py-6 text-center text-sm text-gray-500">
+        <div class="max-w-7xl mx-auto px-6">
+            <p>&copy; 2025 ComplaintSys. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

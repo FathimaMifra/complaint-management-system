@@ -25,16 +25,17 @@ class ComplaintController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->hasRole('Admin')) {
-            // Admin sees all complaints
-            $complaints = Complaint::with('user')->latest()->paginate(10);
-        } elseif ($user->hasRole('Manager')) {
-            // Manager sees all complaints
-            $complaints = Complaint::with('user')->latest()->paginate(10);
-        } else {
-            // Regular users see only their complaints
-            $complaints = Complaint::where('user_id', $user->id)->latest()->paginate(10);
-        }
+        // if ($user->hasRole('Admin')) {
+        //     // Admin sees all complaints
+        //     $complaints = Complaint::with('user')->latest()->paginate(10);
+        // } elseif ($user->hasRole('Manager')) {
+        //     // Manager sees all complaints
+        //     $complaints = Complaint::with('user')->latest()->paginate(10);
+        // } else {
+        //     // Regular users see only their complaints
+        //     $complaints = Complaint::where('user_id', $user->id)->latest()->paginate(10);
+        // }
+        $complaints = Complaint::where('user_id', $user->id)->latest()->paginate(10);
 
         return view('complaints.index', compact('complaints'));
     }
@@ -63,7 +64,6 @@ class ComplaintController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'category' => 'nullable|string|in:service,billing,product,other',
         ]);
 
         // Use default AI result for now
@@ -78,12 +78,10 @@ class ComplaintController extends Controller
             'user_id' => Auth::id(),
             'title' => $validated['title'],
             'description' => $validated['description'],
-            'category' => $validated['category'] ?? ($aiResult['category'] ?? 'other'),
             'status' => 'pending',
-            'ai_analysis' => $aiResult,
         ]);
 
-        return redirect()->route('complaints.index')->with('success', 'Complaint submitted successfully!');
+        return redirect()->route('complaints.show', $complaint)->with('success', 'Complaint submitted successfully!');
     }
 
     /**
@@ -93,12 +91,11 @@ class ComplaintController extends Controller
     {
         $user = Auth::user();
 
-        // Check if user can view this complaint
         if (!$user->hasRole('Admin') && !$user->hasRole('Manager') && $complaint->user_id !== $user->id) {
             abort(403, 'Unauthorized action.');
         }
 
-        return view('complaints.show', compact('complaint'));
+        return view('complaints.show', $complaint, compact('complaint'));
     }
 
     /**

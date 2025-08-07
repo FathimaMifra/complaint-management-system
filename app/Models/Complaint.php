@@ -9,14 +9,6 @@ class Complaint extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'description',
-        'category',
-        'status',
-        'ai_analysis',
-        'user_id',
-    ];
 
     protected $casts = [
         'ai_analysis' => 'array',

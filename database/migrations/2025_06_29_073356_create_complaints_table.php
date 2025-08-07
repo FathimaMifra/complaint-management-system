@@ -17,11 +17,11 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description');
-            $table->string('category')->nullable(); // e.g., service, billing
-            $table->string('status')->default('pending'); // pending, in-progress, resolved
-            $table->json('ai_analysis')->nullable(); // Store AI results (sentiment, urgency, etc.)
+            $table->date('due_date')->nullable();
+            $table->string('status')->default('Pending'); // pending, in-progress, resolved
+            $table->string('priority')->nullable();
+            $table->string('sentiment')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('user_id')->nullable()->change();
         });
     }
 

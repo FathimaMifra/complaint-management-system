@@ -7,6 +7,7 @@ module.exports = {
         './resources/**/*.blade.php',
         './resources/**/*.js',
         './resources/**/*.vue',
+        './vendor/livewire/livewire/dist/**/*.js',
     ],
     theme: {
         extend: {},

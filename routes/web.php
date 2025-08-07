@@ -15,7 +15,7 @@ Route::get('/dashboard', function () {
     if ($user->hasRole('Admin')) {
         return redirect()->route('filament.admin.pages.dashboard');
     } else {
-        return view('dashboard');
+        return redirect()->route('complaints.index');
     }
 })->middleware(['auth', 'verified'])->name('dashboard');
 

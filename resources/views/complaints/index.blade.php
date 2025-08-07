@@ -1,10 +1,6 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Complaints') }}
-        </h2>
-    </x-slot>
+@extends('layouts.user')
 
+@section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -59,7 +55,7 @@
                                         <div class="text-sm leading-5 text-gray-900">{{ $complaint->title }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                                                     @if($complaint->category === 'service') bg-blue-100 text-blue-800
                                                     @elseif($complaint->category === 'billing') bg-yellow-100 text-yellow-800
                                                     @elseif($complaint->category === 'product') bg-green-100 text-green-800
@@ -69,7 +65,7 @@
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                                                     @if($complaint->status === 'pending') bg-yellow-100 text-yellow-800
                                                     @elseif($complaint->status === 'in-progress') bg-blue-100 text-blue-800
                                                     @elseif($complaint->status === 'resolved') bg-green-100 text-green-800
@@ -128,4 +124,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
