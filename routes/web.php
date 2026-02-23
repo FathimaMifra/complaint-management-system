@@ -4,15 +4,17 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplaintController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 // Dashboard route with role-based redirection
 Route::get('/dashboard', function () {
-    $user = auth()->user();
+    $user = \Illuminate\Support\Facades\Auth::user();
 
-    if ($user->hasRole('Admin')) {
+    // Ensure the User model uses the HasRoles trait from Spatie
+    if ($user && method_exists($user, 'hasRole') && $user->hasRole('Admin')) {
         return redirect()->route('filament.admin.pages.dashboard');
     } else {
         return redirect()->route('complaints.index');

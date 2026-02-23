@@ -10,19 +10,19 @@
     <!-- Header -->
     <header class="bg-white shadow sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="text-2xl font-bold text-blue-500 flex items-center space-x-2">
+            <div class="text-2xl font-bold text-sky-900 flex items-center space-x-2">
                 <span class="text-3xl"></span>
                 <span>ComplaintSys</span>
             </div>
             <nav class="space-x-6 hidden md:block">
-                <a href="#home" class="text-gray-700 hover:text-blue-500">Home</a>
-                <a href="#about" class="text-gray-700 hover:text-blue-500">About</a>
-                <a href="#gallery" class="text-gray-700 hover:text-blue-500">Gallery</a>
-                <a href="#contact" class="text-gray-700 hover:text-blue-500">Contact</a>
+                <a href="#home" class="text-gray-700 hover:text-sky-600">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-sky-600">About</a>
+                <a href="#gallery" class="text-gray-700 hover:text-sky-600">Gallery</a>
+                <a href="#contact" class="text-gray-700 hover:text-sky-600">Contact</a>
             </nav>
             <div class="space-x-2">
-                <a href="/login" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Login</a>
-                <a href="/register" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Register</a>
+                <a href="/login" class="px-4 py-2 bg-sky-900 text-white rounded hover:bg-sky-600">Login</a>
+                <a href="/register" class="px-4 py-2 bg-sky-900 text-white rounded hover:bg-sky-600">Register</a>
             </div>
         </div>
     </header>

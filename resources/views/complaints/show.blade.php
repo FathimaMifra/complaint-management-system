@@ -11,6 +11,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    @if(session('success'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+
                     <div class="mb-6">
                         <a href="{{ route('complaints.index') }}" class="text-indigo-600 hover:text-indigo-900">
                             ← Back to Complaints
@@ -32,7 +38,7 @@
                                     <p class="mt-1 text-sm text-gray-900">{{ $complaint->description }}</p>
                                 </div>
 
-                                <div>
+                                {{-- <div>
                                     <label class="block text-sm font-medium text-gray-700">Category</label>
                                     <span class="mt-1 inline-flex px-2 py-1 text-xs font-semibold rounded-full
                                         @if($complaint->category === 'service') bg-blue-100 text-blue-800
@@ -42,7 +48,7 @@
                                         @endif">
                                         {{ ucfirst($complaint->category) }}
                                     </span>
-                                </div>
+                                </div> --}}
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Status</label>

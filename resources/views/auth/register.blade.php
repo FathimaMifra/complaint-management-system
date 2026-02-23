@@ -5,6 +5,20 @@
   <div class="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
     <h2 class="text-3xl font-bold text-center text-blue-600 mb-6">Create an Account</h2>
 
+    <!-- Success Message -->
+    @if(session('success'))
+    <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg text-center">
+      <p class="font-semibold text-lg">{{ session('success') }}</p>
+      <p class="mt-2 text-sm">Redirecting you to your dashboard...</p>
+    </div>
+    <script>
+      setTimeout(function() {
+        window.location.href = "{{ route('dashboard') }}";
+      }, 3000);
+    </script>
+    @endif
+
+    @if(!session('success'))
     <form method="POST" action="{{ route('register') }}">
       @csrf
 
@@ -57,6 +71,7 @@
         </button>
       </div>
     </form>
+    @endif
   </div>
 </section>
 @endsection

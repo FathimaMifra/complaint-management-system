@@ -16,4 +16,5 @@ class ListComplaints extends ListRecords
             // Actions\CreateAction::make(),
         ];
     }
+
 }

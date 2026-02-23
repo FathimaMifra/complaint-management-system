@@ -15,14 +15,20 @@ use Spatie\Permission\Models\Role;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
     public function create(): View
     {
+        // If user is authenticated and no success message, redirect to dashboard
+        if (Auth::check() && !session('success')) {
+            $user = Auth::user();
+            if ($user->hasRole('Admin')) {
+                return redirect()->route('filament.admin.pages.dashboard');
+            } else {
+                return redirect(route('dashboard', absolute: false));
+            }
+        }
+        
         return view('auth.register');
     }
-
     /**
      * Handle an incoming registration request.
      *
@@ -52,11 +58,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        // Redirect based on user role
-        if ($user->hasRole('Admin')) {
-            return redirect()->route('filament.admin.pages.dashboard');
-        } else {
-            return redirect(route('dashboard', absolute: false));
-        }
+        // Flash success message and redirect back to registration page to show the message
+        return redirect()->route('register')->with('success', 'Registration Successful!');
     }
 }

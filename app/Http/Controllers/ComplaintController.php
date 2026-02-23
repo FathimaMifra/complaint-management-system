@@ -81,7 +81,7 @@ class ComplaintController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect()->route('complaints.show', $complaint)->with('success', 'Complaint submitted successfully!');
+        return redirect()->route('complaints.show', $complaint)->with('success', 'Complaint Created Successfully');
     }
 
     /**

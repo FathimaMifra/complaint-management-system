@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Models\Contracts\FilamentUser;
 
+
 class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, HasRoles, HasFactory, Notifiable;
