@@ -51,16 +51,16 @@ The system integrates a Python-based AI model (`ai_model.py`) to classify compla
 ## 📸 Screenshots
 
 ### 🔐 Login Page
-![Login](screenshots/login.png)
+![Login](screenshot/login.png)
 
 ### 📊 Dashboard
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshot/dashboard.png)
 
 ### 📝 Complaint Form
-![Complaint Form](screenshots/complaint-form.png)
+![Complaint Form](screenshot/complaint-form.png)
 
 ### 📈 Complaint List
-![Complaint List](screenshots/complaint-list.png)
+![Complaint List](screenshot/complaint-list.png)
 
 ---
 
