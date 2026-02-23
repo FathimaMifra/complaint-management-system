@@ -64,7 +64,7 @@ The system integrates a Python-based AI model (`ai_model.py`) to classify compla
 
 ---
 ## 🗄 Database Schema
-![Database Schema](screenshots/database-schema.png)
+![Database Schema](screenshot/database-schema.png)
 
 ## 👩‍💻 Developed By
 Fathima Mifra
