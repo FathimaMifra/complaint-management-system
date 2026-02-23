@@ -48,9 +48,19 @@ The system integrates a Python-based AI model (`ai_model.py`) to classify compla
    php artisan serve
 
 ---
-
 ## 📸 Screenshots
-(Add screenshots here later)
+
+### 🔐 Login Page
+![Login](screenshots/login.png)
+
+### 📊 Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### 📝 Complaint Form
+![Complaint Form](screenshots/complaint-form.png)
+
+### 📈 Complaint List
+![Complaint List](screenshots/complaint-list.png)
 
 ---
 
