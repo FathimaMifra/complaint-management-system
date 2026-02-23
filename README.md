@@ -63,6 +63,8 @@ The system integrates a Python-based AI model (`ai_model.py`) to classify compla
 ![Complaint List](screenshot/complaint-list.png)
 
 ---
+## 🗄 Database Schema
+![Database Schema](screenshots/database-schema.png)
 
 ## 👩‍💻 Developed By
 Fathima Mifra
